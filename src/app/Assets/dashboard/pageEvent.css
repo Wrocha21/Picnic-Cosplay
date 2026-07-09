@@ -1,0 +1,32 @@
+@import url("../base/variables.css");
+
+.box-header{
+  margin-left: 18px;
+  .info-header{
+    p{
+      color: var(--text-secondary-color);
+    }
+  }
+}
+
+main > .box-buttonCreate{
+  position: absolute;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 20px;
+  bottom: 90px;
+
+  border-radius: 12px;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  svg{
+    fill: white;
+  }
+  &:hover{
+    background-color: #fa3131;
+  }
+}

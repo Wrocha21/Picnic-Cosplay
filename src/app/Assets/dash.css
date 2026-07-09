@@ -1,0 +1,13 @@
+@import url("./base/variables.css");
+@import url("./dashboard/dashPage.css");
+@import url("./dashboard/navbar.css");
+@import url("./dashboard/jurados.css"); 
+@import url("./dashboard/equipe.css");
+@import url("./dashboard/eventCreate.css");
+@import url("./dashboard/pageEvent.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

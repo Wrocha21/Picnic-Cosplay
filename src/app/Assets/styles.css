@@ -1,0 +1,10 @@
+@import url("./base/variables.css");
+@import url("./sections/login.css");
+@import url("./sections/hero.css");
+@import url("./sections/eventosDestaque.css");
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

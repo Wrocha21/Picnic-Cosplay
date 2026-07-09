@@ -1,0 +1,381 @@
+@import url("../base/variables.css");
+
+.equipe-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 20px 20px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.equipe-header{
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  color: var(--primary-color);
+}
+/* Topbar: logo + avatar do usuário logado */
+
+.equipe-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.equipe-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e8727e;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Header */
+
+.equipe-header {
+  margin-bottom: 18px;
+}
+
+.equipe-title {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #16171a;
+  letter-spacing: -0.01em;
+}
+
+.equipe-subtitle {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #8b8d94;
+  font-weight: 400;
+}
+
+/* Toolbar: busca + filtro */
+
+.equipe-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.equipe-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ececee;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: #c9ccd2;
+}
+
+.equipe-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 13.5px;
+  color: #16171a;
+  background: transparent;
+}
+
+.equipe-search input::placeholder {
+  color: #c9ccd2;
+}
+
+.equipe-search svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.equipe-filter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ececee;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #16171a;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.equipe-filter-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Badge de contagem de usuários */
+
+.equipe-count-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.equipe-count-badge {
+  display: inline-block;
+  background-color: #fbe6e8;
+  color: #e8727e;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* Card com a lista */
+
+.equipe-card {
+  border: 1px solid #ececee;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  height: 400px;
+}
+
+.equipe-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #f1eef0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #16171a;
+}
+
+.equipe-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.equipe-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #f1eef0;
+}
+
+.equipe-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.equipe-row-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.equipe-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.equipe-avatar-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1eef0;
+  color: #9a9ca3;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.equipe-row-nome {
+  margin: 0 0 2px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #16171a;
+}
+
+.equipe-row-papel {
+  margin: 0;
+  font-size: 12px;
+  color: #9a9ca3;
+  font-weight: 400;
+}
+
+.equipe-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.equipe-row-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #9a9ca3;
+}
+
+.equipe-row-actions button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.equipe-action-danger {
+  color: #e8727e !important;
+}
+
+/* Rodapé com botões de navegação */
+
+.equipe-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.equipe-btn {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 0;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.equipe-btn-voltar {
+  background-color: #f1eef0;
+  color: #b9bac0;
+  cursor: not-allowed;
+}
+
+.equipe-btn-proximo {
+  background-color: #e8535f;
+  color: #ffffff;
+}
+
+
+@media (max-width: 340px) {
+  .equipe-page {
+    padding: 16px 14px 20px;
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .equipe-page {
+    max-width: 620px;
+    padding: 28px 32px 32px;
+  }
+
+  .equipe-title {
+    font-size: 26px;
+  }
+
+  .equipe-toolbar {
+    max-width: 420px;
+  }
+}
+
+/* Notebook (1024px+): mais respiro, tabela com colunas mais largas e rodapé alinhado à direita */
+@media (min-width: 1024px) {
+  .equipe-page {
+    max-width: 880px;
+    padding: 40px 40px 40px;
+  }
+
+  .equipe-title {
+    font-size: 28px;
+  }
+
+  .equipe-topbar {
+    margin-bottom: 22px;
+  }
+
+  .equipe-toolbar {
+    max-width: 380px;
+  }
+
+  .equipe-card {
+    padding: 24px;
+  }
+
+  .equipe-row {
+    padding: 16px 0;
+  }
+
+  .equipe-avatar,
+  .equipe-avatar-placeholder {
+    width: 44px;
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .equipe-row-nome {
+    font-size: 14.5px;
+  }
+
+  .equipe-row-papel {
+    font-size: 12.5px;
+  }
+
+  /* Rodapé deixa de ocupar a largura toda — vira ação alinhada à direita */
+  .equipe-footer {
+    max-width: 320px;
+    margin-left: auto;
+    margin-top: 24px;
+
+    button{
+      width: 200px;
+    }
+  }
+}
+
+/* Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .equipe-page {
+    max-width: 1100px;
+    padding: 56px 48px 48px;
+  }
+
+  .equipe-title {
+    font-size: 32px;
+  }
+
+  .equipe-subtitle {
+    font-size: 15.5px;
+  }
+
+  .equipe-search {
+    padding: 12px 16px;
+  }
+
+  .equipe-filter-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .equipe-count-badge {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
