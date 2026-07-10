@@ -9,9 +9,9 @@ interface propsloader {
 export default function Loader({ status }: propsloader) {
   return (
     <>
-      {status === "LOADING" && <CircleNotchIcon id="loaderIcon" width={24} height={24} />}
-      {status === "ERROR" && <X width={24} height={24} />}
-      {status === "SUCESS" && <Check id="checkIcon" width={24} height={24} />}
+      {status === "loading" && <CircleNotchIcon id="loaderIcon" width={24} height={24} />}
+      {status === "error" && <X width={24} height={24} />}
+      {status === "sucess" && <Check id="checkIcon" width={24} height={24} />}
     </>
   );
 }

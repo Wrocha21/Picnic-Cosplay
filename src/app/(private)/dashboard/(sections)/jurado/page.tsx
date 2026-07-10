@@ -43,10 +43,11 @@ export default function EventosPage() {
           <MagnifyingGlass weight="bold" />
           <input type="text" placeholder="Busca fácil" />
         </div>
-        <button type="button" className="eventos-filter">
-          <span>Tradicional</span>
-          <CaretDown weight="bold" />
-        </button>
+        <select className="eventos-filter" name="category-select" id="categories">
+          <option value="tradicional">Adulto</option>
+          <option value="cospop">Cospop</option>
+          <option value="kids">Kids</option>
+        </select>
       </div>
 
       <section className="eventos-card">

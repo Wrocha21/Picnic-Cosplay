@@ -41,7 +41,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      setStatus("LOADING");
+      setStatus("loading");
       await delay(1000);
       const userCredential = await signInWithEmailAndPassword(auth, emailValue, passValue);
       const user = userCredential.user
@@ -51,14 +51,14 @@ export default function Login() {
       data.setTime(data.getTime() + diasParaExpirar * 24 * 60 * 60 * 1000);
 
       document.cookie = `session=${encodeURIComponent(token)}; expires=${data.toUTCString()}; path=/; SameSite=Strict; Secure`;
-      setStatus("SUCESS");
+      setStatus("sucess");
 
       
       await delay(500);
       window.location.href = "/dashboard";
       
     } catch (err: unknown) {
-      setStatus("ERROR");
+      setStatus("error");
       if (err instanceof FirebaseError) {
         setLoginError(err);
       } else {
