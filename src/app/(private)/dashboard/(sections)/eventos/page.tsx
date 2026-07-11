@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "@/app/Assets/dash.css";
 import {
   MagnifyingGlass,
@@ -10,8 +10,21 @@ import {
   CaretLeftIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import { useRouter } from "next/navigation";
-
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import { db } from "@/firebase/config";
+import Image from "next/image";
 type StatusEvento = "em_andamento" | "publicado" | "encerrado";
+import { EventoDoBancoType } from "@/app/services/eventos";
+
+import {
+  CalendarBlankIcon,
+  CalendarDots,
+  Circle,
+  DotsThree,
+  DotsThreeCircleIcon,
+  MapPinIcon,
+} from "@phosphor-icons/react";
+import Loader from "@/Components/ui/Loader"
 
 const abasFiltro: { label: string; value: "todos" | StatusEvento }[] = [
   { label: "Todos", value: "todos" },
@@ -22,7 +35,67 @@ const abasFiltro: { label: string; value: "todos" | StatusEvento }[] = [
 
 export default function EventosPage() {
   const [abaAtiva, setAbaAtiva] = useState<"todos" | StatusEvento>("todos");
+  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState<"loading" | "sucess" | "error" | "idle">(
+    "idle",
+  );
+  const delay = (ms: number | undefined) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+  const [eventos, setEventos] = useState<EventoDoBancoType[]>([]);
   const router = useRouter();
+
+  useEffect(() => {
+    async function iniciarOuvinte() {
+      setStatus("loading");
+      try {
+        const q = query(collection(db, "eventos"));
+        await delay(500)
+        const unsubscribe = onSnapshot(
+          q,
+          (querySnapshot) => {
+            try {
+              const listaFormatada = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+              })) as EventoDoBancoType[];
+
+              setEventos(listaFormatada);
+              setStatus("idle");
+            } catch (erroFormatacao) {
+              console.error(
+                "Erro ao formatar os dados salvos:",
+                erroFormatacao,
+              );
+              setStatus("idle");
+            }
+          },
+          (error) => {
+            console.error("Erro retornado pelo Firebase Firestore:", error);
+            setStatus("idle");
+          },
+        );
+
+        return unsubscribe;
+      } catch (errorGeral) {
+        console.error(
+          "Erro crítico ao inicializar a busca de eventos:",
+          errorGeral,
+        );
+        setStatus("idle");
+      }
+    }
+
+    // Executa a nossa função blindada
+    const fecharConexao = iniciarOuvinte();
+
+    // Executa o desmonte do ouvinte ao sair do componente
+    return () => {
+      fecharConexao.then((unsubscribe) => {
+        if (unsubscribe) unsubscribe();
+      });
+    };
+  }, []);
+
   return (
     <main className="eventos-page">
       <header className="eventos-header">
@@ -97,6 +170,83 @@ export default function EventosPage() {
             Ordenar
             <CaretDown weight="bold" />
           </button>
+        </div>
+        <div className="eventos-lista">
+          {status !== "loading" ? (
+            eventos.slice(0, 3).map((evento) => (
+              <div key={evento.id} onClick={() => router.push(`/dashboard/eventos/editar/${evento.id}`)} className="box-event">
+                <div className="box-info">
+                  <div className="boxImg">
+                    <Image
+                      src={evento.banner.url}
+                      width={120}
+                      height={120}
+                      alt=""
+                      loading="eager"
+                    />
+                  </div>
+                  <div className="box-infoTitles">
+                    <div className="boxtitles">
+                      <div className={`status ${evento.status === ""}`}>
+                        <div className="box-titleStatus">
+                          <Circle
+                            width={12}
+                            height={12}
+                            weight="fill"
+                            color="green"
+                          />
+                          <span id="status">{evento.status}</span>
+                        </div>
+                      </div>
+                      <div className="title">
+                        <h3 id="Title">{evento.nome}</h3>
+                      </div>
+                    </div>
+                    <div className="box-date">
+                      <div className="local">
+                        <MapPinIcon width={18} height={18} />
+                        <p className="local">{evento.local}</p>
+                      </div>
+                      <div className="initialDate">
+                        <CalendarBlankIcon width={18} height={18} />
+                        <p id="initialDate">
+                          Data:{" "}
+                          {evento.periodoInicio?.toDate
+                            ? evento.periodoInicio
+                                .toDate()
+                                .toLocaleString("pt-BR", {
+                                  dateStyle: "short",
+                                  timeStyle: "short",
+                                })
+                            : String(evento.periodoInicio || "")}
+                        </p>
+                      </div>
+                      <div className="finalDate">
+                        <CalendarDots width={18} height={18} />
+                        <p id="finalDate">
+                          Término:{" "}
+                          {evento.periodoTermino?.toDate
+                            ? evento.periodoTermino
+                                .toDate()
+                                .toLocaleString("pt-BR", {
+                                  dateStyle: "short",
+                                  timeStyle: "short",
+                                })
+                            : String(evento.periodoTermino || "")}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="box-dots">
+                    <DotsThree width={24} height={24} />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <Loader status={status} />
+          )}
+          {status === "idle" && eventos.length === 0 ? <div className="emptyEvent">Nenhum evento criado</div> : ""}
         </div>
       </section>
 
