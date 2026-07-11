@@ -1,11 +1,11 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import IconPassView from "@/Components/ui/login-pass-view";
+import IconPassView from "@/Components/ui/Login-pass-view";
 import Image from "next/image";
 import logo from "@/app/Assets/images/logo.png";
 import "@/app/Assets/styles.css";
-import Loader from "@/Components/ui/loader";
+import Loader from "@/Components/ui/Loader";
 import { auth } from "@/firebase/config";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";

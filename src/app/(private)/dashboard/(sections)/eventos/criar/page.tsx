@@ -10,13 +10,12 @@ import {
   Image as ImageIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import { criarEventoCompleto } from "@/app/services/eventos";
-import Loader from "@/Components/ui/loader";
+import Loader from "@/Components/ui/Loader";
 
 export default function CriarEventoPage() {
   const [bannerNome, setBannerNome] = useState<string | null>(null);
-  const [status, setStatus] = useState<"loading" | "sucess" | "error" | "idle">(
-    "idle",
-  );
+  const [status, setStatus] = useState<"loading" | "sucess" | "error" | "idle">("idle");
+  const [formKey, setFormKey] = useState(0);
   const delay = (ms: number | undefined) =>
     new Promise((resolve) => setTimeout(resolve, ms));
   const router = useRouter();
@@ -33,9 +32,10 @@ export default function CriarEventoPage() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
     const arquivoBanner = formData.get("bannerInput") as File;
-
+    
     const dadosDoFormulario = Object.fromEntries(formData.entries());
 
     const camposVazios = Object.entries(dadosDoFormulario)
@@ -55,15 +55,15 @@ export default function CriarEventoPage() {
     try {
       setStatus("loading");
       await delay(500);
-
       // CHAMANDO A FUNÇÃO SEPARADA AQUI:
       await criarEventoCompleto(dadosDoFormulario, arquivoBanner);
       setStatus("sucess");
       await delay(800);
       alert("Evento criado com sucesso!");
+      setFormKey(prev => prev + 1);
       // reset the submitted form
-      event.currentTarget.reset();
       setBannerNome(null);
+      setStatus("idle");
     } catch (err) {
       setStatus("error");
       console.log(err);
@@ -78,7 +78,7 @@ export default function CriarEventoPage() {
 
   return (
     <main className="criar-evento-page">
-      <form className="criar-evento-form" onSubmit={handleSubmit}>
+      <form key={formKey} className="criar-evento-form" onSubmit={handleSubmit}>
         <section className="criar-evento-section">
           <h2 className="criar-evento-section-title">
             <Info weight="bold" />
@@ -169,7 +169,7 @@ export default function CriarEventoPage() {
             className="criar-evento-btn criar-evento-btn-criar"
           >
             {" "}
-            {status !== "idle" ? <Loader status={status} /> : "Criar Evento"}
+            {status === "idle" ? "Criar Evento" :  <Loader status={status} />}
           </button>
         </div>
       </form>

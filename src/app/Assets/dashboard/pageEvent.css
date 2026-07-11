@@ -33,7 +33,6 @@
   letter-spacing: 0.02em;
 }
 
-
 /* Header */
 
 .eventos-header {
@@ -41,7 +40,6 @@
   display: flex;
   gap: 10px;
 }
-
 
 .eventos-title {
   font-size: 21px;
@@ -182,7 +180,10 @@
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .eventos-aba-ativa {
@@ -242,7 +243,105 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 12px;
+  height: 400px;
+
+  svg#loaderIcon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color);
+  }
+
+  .box-event {
+    .box-info {
+      display: flex;
+      box-shadow: 0px 0px 4px 0px rgb(227, 227, 227);
+      height: 159px;
+      align-items: center;
+      justify-content: start;
+      gap: 20px;
+      border-radius: 14px;
+      scale: 1;
+      transition: linear all 0.1s;
+      cursor: pointer;
+
+      &:hover {
+        scale: 1.01;
+      }
+
+      .box-infoTitles {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .boxtitles {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+
+          .status {
+            border: 1px solid rgb(26, 150, 26);
+            width: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+            border-radius: 20px;
+
+            .box-titleStatus {
+              width: 76px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              span {
+                color: green;
+              }
+            }
+          }
+          .title {
+            h3 {
+              color: var(--secondary-color);
+            }
+          }
+        }
+
+        span,
+        p {
+          color: var(--text-secondary-color);
+          font-size: 12px;
+        }
+
+        .box-date {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+          .local,
+          .initialDate,
+          .finalDate {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            width: 220px;
+
+            svg {
+              color: var(--primary-color);
+            }
+          }
+        }
+      }
+
+      .boxImg {
+        margin-left: 10px;
+        img {
+          border-radius: 10px;
+        }
+      }
+    }
+  }
 }
 
 .eventos-item {
@@ -252,7 +351,9 @@
   border-radius: 14px;
   padding: 12px;
   box-shadow: 0 1px 2px rgba(16, 17, 20, 0.03);
-  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .eventos-item:hover {
@@ -335,7 +436,9 @@
   border-radius: 999px;
   text-decoration: none;
   box-shadow: 0 6px 16px rgba(232, 83, 95, 0.35);
-  transition: background-color 0.15s ease, transform 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
   z-index: 20;
 }
 
@@ -350,6 +453,60 @@
 .eventos-fab svg {
   width: 16px;
   height: 16px;
+}
+.titlesExcluir{
+  margin-top: 20px;
+  span{
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+
+}
+
+
+.excluir-evento {
+  border: 2px dotted red;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 100px;
+  height: 100px;
+  background-color: #f7f7f74d;
+
+  button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 120px;
+    border-radius: 10px;
+    font-weight: bold;
+    height: 50px;
+    cursor: pointer;
+    transition: all linear 0.2s;
+
+    &:hover{
+      background-color: #90222b;
+    }
+  }
+  svg{
+    margin-left: 40px;
+  }
+}
+
+.emptyEvent{
+  background-color: #a5a5a557;
+  width: 200px;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border-radius: 10px;
+  color: gray;
 }
 
 @media (max-width: 340px) {
@@ -398,9 +555,9 @@
   }
 
   .eventos-lista {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .eventos-fab {
