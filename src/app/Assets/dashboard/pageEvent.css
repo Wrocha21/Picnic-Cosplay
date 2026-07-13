@@ -282,7 +282,7 @@
           flex-direction: column;
           gap: 7px;
 
-          .status {
+          .status-publicado {
             border: 1px solid rgb(26, 150, 26);
             width: 120px;
             display: flex;
@@ -302,6 +302,48 @@
               }
             }
           }
+          .status-andamento {
+            width: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+            border-radius: 20px;
+            border: 1px solid #d9932f;
+            .box-titleStatus {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: start;
+              gap: 7px;
+            }
+            span {
+              color: #d9932f;
+            }
+          }
+
+          .status-encerrado {
+            width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20px;
+            border-radius: 20px;
+            .box-titleStatus{
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+            
+            border: 1px solid rgb(255, 0, 0);
+            span {
+              color: red;
+            }
+            svg {
+              fill: red;
+            }
+          }
+
           .title {
             h3 {
               color: var(--secondary-color);
@@ -454,15 +496,13 @@
   width: 16px;
   height: 16px;
 }
-.titlesExcluir{
+.titlesExcluir {
   margin-top: 20px;
-  span{
+  span {
     font-weight: 500;
     color: var(--primary-color);
   }
-
 }
-
 
 .excluir-evento {
   border: 2px dotted red;
@@ -485,23 +525,23 @@
     cursor: pointer;
     transition: all linear 0.2s;
 
-    &:hover{
+    &:hover {
       background-color: #90222b;
     }
   }
-  svg{
+  svg {
     margin-left: 40px;
   }
 }
 
-.emptyEvent{
+.emptyEvent {
   background-color: #a5a5a557;
   width: 200px;
   display: flex;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   justify-content: center;
   align-items: center;
   height: 30px;
