@@ -1,22 +1,20 @@
-@import url("../base/variables.css");
-.eventos-page {
+.jurado-page {
   min-height: 100vh;
-  padding: 28px 20px 0px;
-  width: 100vw;
+  background-color: #ffffff;
+  padding: 20px 20px 100px;
+  max-width: 480px;
   margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
 }
 
-.eventos-header {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 50px;
-  svg{
-    fill:  var(--primary-color);
-  }
+/* Header */
+
+.jurado-header {
+  margin-bottom: 18px;
 }
 
-.eventos-title {
+.jurado-title {
   margin: 0 0 6px;
   font-size: 22px;
   font-weight: 700;
@@ -24,35 +22,122 @@
   letter-spacing: -0.01em;
 }
 
-.eventos-subtitle {
+.jurado-subtitle {
   margin: 0;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.4;
   color: #8b8d94;
   font-weight: 400;
 }
 
-/* Toolbar: busca + filtro */
+/* Stats */
 
-.eventos-toolbar {
-  display: flex;
-  align-items: center;
+.jurado-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
-.eventos-search {
-  flex: 1;
+.jurado-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid #ececee;
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.jurado-stat-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #9a9ca3;
+}
+
+.jurado-stat-label svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.jurado-stat-valor {
+  font-size: 20px;
+  font-weight: 800;
+  color: #16171a;
+}
+
+.jurado-stat-valor-avaliados {
+  color: #2b9e5f;
+}
+
+/* Média geral */
+
+.jurado-media-geral {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #fbe6e8;
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+
+.jurado-media-geral-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #e8535f;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.jurado-media-geral-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.jurado-media-geral-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #c46a72;
+  margin-bottom: 3px;
+}
+
+.jurado-media-geral-valor {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #16171a;
+}
+
+/* Busca */
+
+.jurado-toolbar {
+  margin-bottom: 14px;
+}
+
+.jurado-search {
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #f1d3d6;
+  border: 1px solid #ececee;
   border-radius: 12px;
   padding: 10px 14px;
   color: #c9ccd2;
 }
 
-.eventos-search input {
+.jurado-search input {
   flex: 1;
   border: none;
   outline: none;
@@ -61,228 +146,209 @@
   background: transparent;
 }
 
-.eventos-search input::placeholder {
+.jurado-search input::placeholder {
   color: #c9ccd2;
 }
 
-.eventos-search svg {
+.jurado-search svg {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
 }
 
-.eventos-filter {
+/* Abas de status */
+
+.jurado-abas {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid #f1d3d6;
-  border-radius: 12px;
-  padding: 10px 14px;
-  background: #ffffff;
-  color: #16171a;
-  font-size: 13.5px;
-  font-weight: 500;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 22px;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.jurado-abas::-webkit-scrollbar {
+  display: none;
+}
+
+.jurado-aba {
+  flex-shrink: 0;
+  border: 1px solid #ececee;
+  background-color: #ffffff;
+  color: #6f7178;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.eventos-filter svg {
-  width: 14px;
-  height: 14px;
-  color: #9a9ca3;
+.jurado-aba-ativa {
+  background-color: #e8535f;
+  border-color: #e8535f;
+  color: #ffffff;
 }
 
-/* Card principal (tabela + estado vazio) */
+/* Fila */
 
-.eventos-card {
-  border: 1px solid #f1d3d6;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 12px;
-}
-
-.eventos-table-header {
-  display: flex;
-  align-items: center;
-  padding-bottom: 12px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #f1eef0;
-}
-
-.eventos-col {
-  font-size: 12.5px;
-  font-weight: 700;
-  color: #16171a;
-}
-
-.eventos-col-nome {
-  flex: 1.1;
-}
-
-.eventos-col-cosplay {
-  flex: 1;
-}
-
-.eventos-col-categoria {
-  flex: 1.2;
-}
-
-.eventos-col-nota {
-  flex: 0.6;
-  text-align: right;
-}
-
-/* Estado vazio (reutilizado nos dois cards) */
-
-.eventos-empty-state {
+.jurado-fila-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 36px 0 20px;
 }
 
-.eventos-empty-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background-color: #fbe6e8;
-  color: #e8a2a9;
+.jurado-fila-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   margin-bottom: 14px;
 }
 
-.eventos-empty-icon svg {
-  width: 28px;
-  height: 28px;
-}
-
-.eventos-empty-text {
-  margin: 0;
-  font-size: 13px;
-  color: #9a9ca3;
-  font-weight: 500;
-}
-
-.eventos-counter {
-  text-align: center;
-  margin: 0 0 20px;
-  font-size: 12.5px;
-  color: #b9bac0;
-}
-
-/* Card de referência do personagem */
-
-.eventos-referencia-card {
-  margin-bottom: 0;
-}
-
-.eventos-referencia-title {
-  margin: 0;
-  font-size: 13.5px;
+.jurado-fila-title {
+  margin: 0 0 2px;
+  font-size: 15px;
   font-weight: 700;
   color: #16171a;
 }
 
+.jurado-fila-count {
+  margin: 0;
+  font-size: 12px;
+  color: #9a9ca3;
+}
+
+.jurado-ordenar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #e8535f;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.jurado-ordenar svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Espaço reservado pros cards */
+
+.jurado-fila-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  border: 1.5px dashed #ececee;
+  border-radius: 16px;
+  color: #c9ccd2;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Botão flutuante "Avaliar próximo" */
+
+.jurado-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background-color: #e8535f;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(232, 83, 95, 0.35);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  z-index: 20;
+}
+
+.jurado-fab:hover {
+  background-color: #dd3f4c;
+}
+
+.jurado-fab:active {
+  transform: translateY(1px);
+}
+
+.jurado-fab svg {
+  width: 16px;
+  height: 16px;
+}
+
 @media (max-width: 340px) {
-  .eventos-page {
-    padding: 20px 14px 32px;
+  .jurado-page {
+    padding: 16px 14px 90px;
   }
- 
-  .eventos-toolbar {
-    flex-wrap: wrap;
+
+  .jurado-fab span {
+    display: none;
+  }
+
+  .jurado-fab {
+    padding: 14px;
   }
 }
- 
-/* Tablet (768px+): container ganha respiro, mas mantém 1 coluna */
+
+/* Tablet (768px+) */
 @media (min-width: 768px) {
-  .eventos-page {
+  .jurado-page {
     max-width: 620px;
-    padding: 36px 32px 48px;
+    padding: 28px 32px 100px;
   }
- 
-  .eventos-title {
-    font-size: 26px;
-  }
- 
-  .eventos-subtitle {
-    font-size: 14.5px;
+
+  .jurado-title {
+    font-size: 25px;
   }
 }
- 
-/* Notebook (1024px+): layout em duas colunas — tabela à esquerda, referência à direita */
+
+/* Notebook (1024px+) */
 @media (min-width: 1024px) {
-  .eventos-page {
-    max-width: 960px;
-    padding: 44px 40px 56px;
-    
+  .jurado-page {
+    max-width: 900px;
+    padding: 36px 40px 100px;
   }
- 
-  .eventos-header {
-    grid-area: header;
+
+  .jurado-title {
+    font-size: 27px;
   }
- 
-  .eventos-toolbar {
-    grid-area: toolbar;
+
+  .jurado-stats {
     max-width: 480px;
   }
- 
-  .eventos-card {
-    grid-area: content;
+
+  .jurado-media-geral,
+  .jurado-toolbar {
+    max-width: 560px;
   }
- 
-  .eventos-referencia-card {
-    grid-area: referencia;
-    margin-bottom: 0;
+
+  .jurado-fila-placeholder {
+    min-height: 280px;
   }
- 
-  .eventos-counter {
-    grid-area: counter;
-  }
- 
-  .eventos-title {
-    font-size: 28px;
-  }
- 
-  .eventos-empty-icon {
-    width: 72px;
-    height: 72px;
-  }
- 
-  .eventos-empty-icon svg {
-    width: 32px;
-    height: 32px;
+
+  .jurado-fab {
+    right: 40px;
+    bottom: 40px;
   }
 }
- 
-/* Desktop (1440px+): mais respiro, tipografia maior */
+
+/* Desktop (1440px+) */
 @media (min-width: 1440px) {
-  .eventos-page {
+  .jurado-page {
     max-width: 1180px;
-    padding: 56px 48px 64px;
+    padding: 48px 48px 100px;
   }
- 
-  .eventos-title {
-    font-size: 32px;
-  }
- 
-  .eventos-subtitle {
-    font-size: 15.5px;
-  }
- 
-  .eventos-search,
-  .eventos-filter {
-    padding: 12px 16px;
-    font-size: 14.5px;
-  }
- 
-  .eventos-card {
-    padding: 22px;
-  }
- 
-  .eventos-col {
-    font-size: 13.5px;
+
+  .jurado-title {
+    font-size: 29px;
   }
 }
