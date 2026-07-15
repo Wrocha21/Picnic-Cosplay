@@ -10,6 +10,7 @@ import {
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import "@/app/Assets/dash.css";
+import { ContextUsers } from "@/app/Context/context";
 
 type DashboardCard = {
   title: string;
@@ -62,13 +63,15 @@ export default function Dashboard() {
     }
   }
 
+  const {usuarioLogado} = ContextUsers()
+
   return (
     <>
     <p onClick={HandleSignOut}>Deslogar</p>
       <main className="dashboard-page">
         <header className="dashboard-header">
           <div className="box-titles">
-            <h1 className="dashboard-title">Olá, {"nomeUsuario"}!</h1>
+            <h1 className="dashboard-title">Olá, {usuarioLogado?.userName || "carregando"}!</h1>
             <p className="dashboard-subtitle">
               Onde será o próximo evento hoje?
             </p>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import "@/app/Assets/dash.css";
 import {
   UsersThree,
@@ -14,13 +14,6 @@ import {
 
 type StatusAvaliacao = "pendente" | "em_avaliacao" | "avaliado";
 
-type Cosplayer = {
-  id: string;
-  status: StatusAvaliacao;
-  nota: number | null;
-};
-
-
 const abasFiltro: { label: string; value: "todos" | StatusAvaliacao }[] = [
   { label: "Todos", value: "todos" },
   { label: "Pendentes", value: "pendente" },
@@ -31,6 +24,7 @@ const abasFiltro: { label: string; value: "todos" | StatusAvaliacao }[] = [
 export default function EventosPage() {
   const [busca, setBusca] = useState("");
   const [abaAtiva, setAbaAtiva] = useState<"todos" | StatusAvaliacao>("avaliado");
+  
 
   return (
     <main className="jurado-page">

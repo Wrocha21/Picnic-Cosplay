@@ -30,6 +30,7 @@ import {
   MapPinIcon,
 } from "@phosphor-icons/react";
 import Loader from "@/Components/ui/Loader";
+import { ContextUsers } from "@/app/Context/context";
 
 const abasFiltro: { label: string; value: "todos" | StatusEvento }[] = [
   { label: "Todos", value: "todos" },
@@ -49,6 +50,7 @@ export default function EventosPage() {
     new Promise((resolve) => setTimeout(resolve, ms));
   const [eventos, setEventos] = useState<EventoDoBancoType[]>([]);
   const router = useRouter();
+    const {usuarioLogado} = ContextUsers()
 
   const eventosPublicados = eventos.filter(
     (evento) => evento.status === "publicado",
@@ -170,7 +172,7 @@ export default function EventosPage() {
       <header className="eventos-header">
         <div className="box-info">
           <h1 className="eventos-title">
-            Olá, {"nomeUsuario"} <span aria-hidden="true">👋</span>
+            Olá, {usuarioLogado?.userName || "carregando..."} <span aria-hidden="true">👋</span>
           </h1>
           <span className="eventos-subtitle">
             Esta é sua área exclusiva de eventos do Picnic Cosplay.
