@@ -264,7 +264,7 @@ export default function EditarEventoPage() {
 
         <div className="criar-evento-footer">
           <button
-            type="submit"
+            type="button"
             className="criar-evento-btn criar-evento-btn-cancelar"
             onClick={handleCancelar}
           >
