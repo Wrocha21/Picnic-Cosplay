@@ -67,11 +67,16 @@ export async function criarEventoCompleto(
       url: url,
       uploadConfirmado: true,
     },
+    concurso:{
+      habilitado: false,
+      status: "nao_iniciado"
+    },
     status: "publicado",
     estatisticas: { totalInscritos: 0 },
     criadoEm: new Date(),
     atualizadoEm: new Date(),
   };
+  
 
   // 4. Salva no banco
   await setDoc(novaRefEvento, novoEvento);

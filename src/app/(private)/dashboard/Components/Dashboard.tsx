@@ -23,7 +23,7 @@ const cards: DashboardCard[] = [
   {
     title: "Área do Jurado",
     description: "Avalie os competidores do evento",
-    href: "/dashboard/jurado",
+    href: "/dashboard/avaliacoes",
     icon: <ClipboardText weight="bold" />,
   },
   {

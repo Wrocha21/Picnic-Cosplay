@@ -13,7 +13,7 @@ import { editarEventoCompleto } from "@/app/services/eventos";
 import Loader from "@/Components/ui/Loader";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
-import { Warning } from "@phosphor-icons/react";
+import { TrophyIcon, Warning } from "@phosphor-icons/react";
 import DeleteEvent from "@/app/(private)/dashboard/Components/Delete-event";
 
 type FirestoreTimestamp = {
@@ -36,6 +36,8 @@ export default function EditarEventoPage() {
   const [status, setStatus] = useState<"loading" | "sucess" | "error" | "idle">(
     "idle",
   );
+  const [eventIsTrue, setEventIsTrue] = useState<boolean>(false);
+  const [hasPause, setHasPause] = useState<boolean>(false);
   const [formKey, setFormKey] = useState(0);
   const delay = (ms: number | undefined) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -76,6 +78,8 @@ export default function EditarEventoPage() {
     const d = eventoOriginal.periodoTermino.toDate();
     return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
   };
+
+  function handleOpenEvent() {}
 
   const { id } = useParams(); // Pega o ID da URL
 
@@ -242,12 +246,32 @@ export default function EditarEventoPage() {
             />
           </label>
 
+          <h2 className="criar-evento-section-title">
+            <TrophyIcon weight="bold" />
+            <span>Concurso Cosplay</span>
+          </h2>
+
+          <label className="criar-evento-field">
+            <span className="criar-evento-label">Status atual</span>
+            <div className="box-buttons">
+              <button
+                type="button"
+                onClick={() => setEventIsTrue(true)}
+                className={`button-open-event`}
+              >
+                {eventIsTrue ? "Pausar Inscrições" : "Abrir Inscrições"}
+              </button>
+            </div>
+          </label>
+
           <label className="criar-evento-dropzone">
             {bannerNome && (
               <Image
                 src={bannerNome}
                 width={200}
                 height={200}
+                loading="eager"
+                fetchPriority="high"
                 alt="Banner do Evento"
               />
             )}

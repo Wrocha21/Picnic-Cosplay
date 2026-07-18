@@ -274,6 +274,7 @@ export default function EventosPage() {
                         height={120}
                         alt=""
                         loading="eager"
+                        fetchPriority="high"
                       />
                     </div>
                     <div className="box-infoTitles">
