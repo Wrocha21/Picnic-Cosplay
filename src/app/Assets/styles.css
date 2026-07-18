@@ -1,5 +1,11 @@
 @import url("./base/variables.css");
 @import url("./sections/login.css");
+@import url("./sections/principal/hero.css");
+@import url("./sections/principal/evento-destaque.css");
+@import url("./sections/principal/atividades.css");
+@import url("./sections/principal/concurso-cosplay.css");
+@import url("./sections/principal/sobreNois.css");
+@import url("./sections/principal/galeriaFooter.css");
 
 *{
   margin: 0;

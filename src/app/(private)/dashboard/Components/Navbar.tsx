@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className="box-navigations">
         <div className="box-navbar">
           <div className="box-logo">
-            <Image width={82} height={82} alt="" src={logo} loading="eager" />
+            <Image width={82} height={82} alt="" src={logo} loading="eager" fetchPriority="high"/>
           </div>
           <div className="box-perfil"></div>
         </div>

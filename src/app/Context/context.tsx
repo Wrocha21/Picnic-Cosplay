@@ -6,6 +6,7 @@ import {
   useContext,
   ReactNode,
   useEffect,
+  useMemo,
 } from "react";
 import { userProps } from "@/types/user";
 import { collection, doc, onSnapshot } from "firebase/firestore";
@@ -18,6 +19,7 @@ interface MeuContextoProps {
   usuarios: userProps[];
   usuarioLogado: userProps | undefined;
   statusContext: string;
+  
   loading: boolean; // Útil para você travar telas enquanto carrega
 }
 
@@ -40,8 +42,6 @@ export function Provider({ children }: MeuProviderProps) {
   const [statusContext, setStatusContext] = useState<"loading" | "sucess" | "error" | "idle">(
     "idle",
   );
-  const delay = (ms: number | undefined) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
 
   // Escuta se o usuário está logado ou não (resolve o problema do Firebase iniciar vazio)
   useEffect(() => {
@@ -101,7 +101,6 @@ export function Provider({ children }: MeuProviderProps) {
     const timer = window.setTimeout(() => setStatusContext("loading"), 0);
     const unsubscribeAllUsers = onSnapshot(refCollection, async (snapshot) => {
       try{
-        await delay(500)
         const lista = snapshot.docs.map((docSnap) => {
           const dados = docSnap.data();
           return {
@@ -124,9 +123,21 @@ export function Provider({ children }: MeuProviderProps) {
       unsubscribeAllUsers();}
   }, []);
 
+const contextoValor = useMemo(() => {
+  return {
+    estado,
+    setEstado,
+    usuarios,
+    usuarioLogado,
+    loading,
+    statusContext,
+    
+  };
+}, [estado, usuarios, usuarioLogado, loading, statusContext]);
+
   return (
     <MeuContexto.Provider
-      value={{ statusContext, estado, setEstado, usuarioLogado, usuarios, loading }}
+      value={contextoValor}
     >
       {children}
     </MeuContexto.Provider>

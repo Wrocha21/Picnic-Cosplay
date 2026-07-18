@@ -38,13 +38,7 @@ export default function EquipePage() {
           <MagnifyingGlass weight="bold" />
           <input type="text" placeholder="Busca fácil" />
         </div>
-        <button
-          type="button"
-          className="equipe-filter-icon"
-          aria-label="Filtrar"
-        >
-          <SlidersHorizontal weight="bold" />
-        </button>
+     
       </div>
 
       <div className="equipe-count-row">

@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import logo from "@/app/Assets/images/logo.png";
 import "@/app/Assets/styles.css";
-import Loader from "@/Components/ui/loader";
+import Loader from "@/Components/ui/Loader";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/firebase/config";
 import { FirebaseError } from "firebase/app";

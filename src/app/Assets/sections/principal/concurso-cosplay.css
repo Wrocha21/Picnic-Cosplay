@@ -1,0 +1,119 @@
+.concurso-cosplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color);
+}
+
+.concurso-cosplay-imagem {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  
+}
+
+.concurso-cosplay-imagem img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 5px dotted rgb(236, 77, 77);
+  padding: 10px;
+}
+
+.concurso-cosplay-conteudo {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 28px 24px 44px;
+}
+
+.concurso-cosplay-titulo {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.concurso-cosplay-descricao {
+  margin: 0 0 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary-color);
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.concurso-cosplay-cta {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 14px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.concurso-cosplay-cta:hover {
+  background-color: var(--text-primary-color);
+}
+
+.concurso-cosplay-cta:active {
+  transform: translateY(1px);
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .concurso-cosplay {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .concurso-cosplay-imagem {
+    width: 50%;
+    aspect-ratio: auto;
+  }
+
+  .concurso-cosplay-conteudo {
+    width: 50%;
+    max-width: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 48px;
+  }
+
+  .concurso-cosplay-descricao {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .concurso-cosplay-cta {
+    align-self: flex-start;
+  }
+}
+
+/* Notebook (1024px+) */
+@media (min-width: 1024px) {
+  .concurso-cosplay-titulo {
+    font-size: 28px;
+  }
+
+  .concurso-cosplay-descricao {
+    font-size: 15px;
+    max-width: 380px;
+  }
+
+  .concurso-cosplay-conteudo {
+    padding: 48px 64px;
+  }
+}
